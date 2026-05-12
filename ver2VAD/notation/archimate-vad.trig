@@ -1,0 +1,14 @@
+@prefix av: <https://example.org/vad/archimate#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+av:ontology {
+  av:BusinessEvent a rdfs:Class .
+  av:BusinessProcess a rdfs:Class .
+  av:BusinessRole a rdfs:Class .
+  av:BusinessObject a rdfs:Class .
+  av:ApplicationComponent a rdfs:Class .
+  av:triggering a rdf:Property .
+  av:access a rdf:Property .
+  av:assignment a rdf:Property .
+  av:serving a rdf:Property .
+}

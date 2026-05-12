@@ -1,0 +1,12 @@
+@prefix bcd: <https://example.org/vad/bcd#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+bcd:ontology {
+  bcd:BusinessCapability a rdfs:Class .
+  bcd:Artifact a rdfs:Class .
+  bcd:Owner a rdfs:Class .
+  bcd:dependsOn a rdf:Property .
+  bcd:hasInput a rdf:Property .
+  bcd:hasOutput a rdf:Property .
+  bcd:ownedBy a rdf:Property .
+}
