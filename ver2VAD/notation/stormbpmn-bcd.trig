@@ -1,0 +1,14 @@
+@prefix sb: <https://example.org/vad/stormbpmn#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+sb:ontology {
+  sb:Task a rdfs:Class .
+  sb:Event a rdfs:Class .
+  sb:DataObject a rdfs:Class .
+  sb:Lane a rdfs:Class .
+  sb:sequenceFlow a rdf:Property .
+  sb:association a rdf:Property .
+  sb:hasInput a rdf:Property .
+  sb:hasOutput a rdf:Property .
+  sb:assignedLane a rdf:Property .
+}

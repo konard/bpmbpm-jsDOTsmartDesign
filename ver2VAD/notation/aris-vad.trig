@@ -1,0 +1,15 @@
+@prefix vad: <https://example.org/vad/aris#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+vad:ontology {
+  vad:Function a rdfs:Class ; rdfs:label "ARIS VAD Function"@en .
+  vad:Event a rdfs:Class ; rdfs:label "Technical event placeholder"@en .
+  vad:InformationObject a rdfs:Class .
+  vad:Role a rdfs:Class .
+  vad:ApplicationSystem a rdfs:Class .
+  vad:hasNext a rdf:Property .
+  vad:hasInput a rdf:Property .
+  vad:hasOutput a rdf:Property .
+  vad:hasRole a rdf:Property .
+  vad:supportedBy a rdf:Property .
+}

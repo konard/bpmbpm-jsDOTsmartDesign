@@ -1,0 +1,14 @@
+@prefix sila: <https://example.org/vad/sila#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+sila:ontology {
+  sila:Operation a rdfs:Class .
+  sila:Document a rdfs:Class .
+  sila:Role a rdfs:Class .
+  sila:InformationSystem a rdfs:Class .
+  sila:precedes a rdf:Property .
+  sila:usesDocument a rdf:Property .
+  sila:producesDocument a rdf:Property .
+  sila:performedBy a rdf:Property .
+  sila:supportedBy a rdf:Property .
+}
