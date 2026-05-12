@@ -1,14 +1,24 @@
 @prefix av: <https://example.org/vad/archimate#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 
 av:ontology {
-  av:BusinessEvent a rdfs:Class .
-  av:BusinessProcess a rdfs:Class .
-  av:BusinessRole a rdfs:Class .
-  av:BusinessObject a rdfs:Class .
-  av:ApplicationComponent a rdfs:Class .
-  av:triggering a rdf:Property .
-  av:access a rdf:Property .
-  av:assignment a rdf:Property .
-  av:serving a rdf:Property .
+  av:BusinessEvent a rdfs:Class ; rdfs:comment "ArchiMate business event."@en .
+  av:BusinessProcess a rdfs:Class ; rdfs:comment "ArchiMate business process used as VAD work unit."@en .
+  av:BusinessRole a rdfs:Class ; rdfs:comment "Role assigned to behavior."@en .
+  av:BusinessObject a rdfs:Class ; rdfs:comment "Business object used as input or output."@en .
+  av:ApplicationComponent a rdfs:Class ; rdfs:comment "Application component serving the process."@en .
+  av:Meaning a rdfs:Class ; rdfs:comment "Meaning or representation used as a comment."@en .
+
+  av:triggering a rdf:Property ; rdfs:comment "Triggering relation between events and behavior."@en .
+  av:access a rdf:Property ; rdfs:domain av:BusinessProcess ; rdfs:range av:BusinessObject ; rdfs:comment "Access to a business object."@en .
+  av:assignment a rdf:Property ; rdfs:domain av:BusinessRole ; rdfs:range av:BusinessProcess ; rdfs:comment "Role assignment."@en .
+  av:serving a rdf:Property ; rdfs:domain av:ApplicationComponent ; rdfs:range av:BusinessProcess ; rdfs:comment "Application component serves a process."@en .
+  av:association a rdf:Property ; rdfs:range av:Meaning ; rdfs:comment "Association with explanatory meaning or representation."@en .
+
+  av:BusinessProcessShape a sh:NodeShape ; sh:targetClass av:BusinessProcess ;
+    sh:property [ sh:path av:triggering ; sh:or ( [ sh:class av:BusinessProcess ] [ sh:class av:BusinessEvent ] ) ] ;
+    sh:property [ sh:path av:access ; sh:class av:BusinessObject ] ;
+    sh:property [ sh:path av:association ; sh:class av:Meaning ] .
 }

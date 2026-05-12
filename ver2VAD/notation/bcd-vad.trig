@@ -1,12 +1,24 @@
 @prefix bcd: <https://example.org/vad/bcd#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 
 bcd:ontology {
-  bcd:BusinessCapability a rdfs:Class .
-  bcd:Artifact a rdfs:Class .
-  bcd:Owner a rdfs:Class .
-  bcd:dependsOn a rdf:Property .
-  bcd:hasInput a rdf:Property .
-  bcd:hasOutput a rdf:Property .
-  bcd:ownedBy a rdf:Property .
+  bcd:BusinessCapability a rdfs:Class ; rdfs:comment "Stable organizational ability that produces business value."@en .
+  bcd:Resource a rdfs:Class ; rdfs:comment "Input consumed by a capability."@en .
+  bcd:Product a rdfs:Class ; rdfs:comment "Output produced by a capability."@en .
+  bcd:Owner a rdfs:Class ; rdfs:comment "Role or unit accountable for a capability."@en .
+  bcd:Comment a rdfs:Class ; rdfs:comment "Annotation attached to an element or relation."@en .
+
+  bcd:dependsOn a rdf:Property ; rdfs:domain bcd:BusinessCapability ; rdfs:range bcd:BusinessCapability ; rdfs:comment "Capability dependency."@en .
+  bcd:consumes a rdf:Property ; rdfs:domain bcd:BusinessCapability ; rdfs:range bcd:Resource ; rdfs:comment "Capability consumes a resource."@en .
+  bcd:produces a rdf:Property ; rdfs:domain bcd:BusinessCapability ; rdfs:range bcd:Product ; rdfs:comment "Capability produces a product or result."@en .
+  bcd:owns a rdf:Property ; rdfs:domain bcd:Owner ; rdfs:range bcd:BusinessCapability ; rdfs:comment "Owner is accountable for a capability."@en .
+  bcd:hasComment a rdf:Property ; rdfs:range bcd:Comment ; rdfs:comment "Relation to a comment."@en .
+
+  bcd:CapabilityShape a sh:NodeShape ; sh:targetClass bcd:BusinessCapability ;
+    sh:property [ sh:path bcd:dependsOn ; sh:class bcd:BusinessCapability ] ;
+    sh:property [ sh:path bcd:consumes ; sh:class bcd:Resource ] ;
+    sh:property [ sh:path bcd:produces ; sh:class bcd:Product ] ;
+    sh:property [ sh:path bcd:hasComment ; sh:class bcd:Comment ] .
 }

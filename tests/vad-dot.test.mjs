@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 
-import { notations, buildGraphvizUrl } from "../ver2VAD/js/vad-app.js";
+import { notations, buildGraphvizUrl, tableColumns } from "../ver2VAD/js/vad-app.js";
 
 const rows = [
   ["event", "Запрос клиента", "", "", "Клиент", ""],
@@ -36,4 +37,18 @@ test("GraphvizOnline URL encodes DOT line by line", () => {
   assert.ok(url.startsWith("https://dreampuf.github.io/GraphvizOnline/?engine=dot#"));
   assert.ok(url.includes("%0A"));
   assert.doesNotMatch(url, /\n/);
+});
+
+test("VAD app exposes notation-aware table columns", () => {
+  const titles = tableColumns.map((column) => column.title);
+  assert.ok(titles.includes("Комментарий / Annotation / Comment"));
+  assert.ok(titles.includes("Связь с комментарием / annotation"));
+  assert.ok(titles.some((title) => title.includes("ARIS")));
+  assert.ok(titles.some((title) => title.includes("BCD")));
+  assert.ok(titles.some((title) => title.includes("ArchiMate")));
+});
+
+test("VAD app links to the detailed notation description", () => {
+  const html = readFileSync(new URL("../ver2VAD/jsDOTsmartDesignVAD.html", import.meta.url), "utf8");
+  assert.match(html, /notation\/all2\.md/);
 });

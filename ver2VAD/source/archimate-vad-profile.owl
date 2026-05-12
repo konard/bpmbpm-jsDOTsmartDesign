@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:av="https://example.org/vad/archimate#">
+
+  <owl:Ontology rdf:about="https://example.org/vad/archimate">
+    <rdfs:comment>Local OWL profile for the VAD-like ArchiMate subset used in ver2VAD.</rdfs:comment>
+    <rdfs:seeAlso rdf:resource="https://pubs.opengroup.org/architecture/archimate3-doc/"/>
+  </owl:Ontology>
+
+  <owl:Class rdf:about="https://example.org/vad/archimate#BusinessEvent"/>
+  <owl:Class rdf:about="https://example.org/vad/archimate#BusinessProcess"/>
+  <owl:Class rdf:about="https://example.org/vad/archimate#BusinessRole"/>
+  <owl:Class rdf:about="https://example.org/vad/archimate#BusinessObject"/>
+  <owl:Class rdf:about="https://example.org/vad/archimate#ApplicationComponent"/>
+  <owl:Class rdf:about="https://example.org/vad/archimate#Meaning"/>
+
+  <owl:ObjectProperty rdf:about="https://example.org/vad/archimate#triggering">
+    <rdfs:comment>Triggering relation between events and behavior.</rdfs:comment>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://example.org/vad/archimate#access">
+    <rdfs:domain rdf:resource="https://example.org/vad/archimate#BusinessProcess"/>
+    <rdfs:range rdf:resource="https://example.org/vad/archimate#BusinessObject"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://example.org/vad/archimate#assignment">
+    <rdfs:domain rdf:resource="https://example.org/vad/archimate#BusinessRole"/>
+    <rdfs:range rdf:resource="https://example.org/vad/archimate#BusinessProcess"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://example.org/vad/archimate#serving">
+    <rdfs:domain rdf:resource="https://example.org/vad/archimate#ApplicationComponent"/>
+    <rdfs:range rdf:resource="https://example.org/vad/archimate#BusinessProcess"/>
+  </owl:ObjectProperty>
+
+  <owl:ObjectProperty rdf:about="https://example.org/vad/archimate#association">
+    <rdfs:range rdf:resource="https://example.org/vad/archimate#Meaning"/>
+  </owl:ObjectProperty>
+</rdf:RDF>
