@@ -1,14 +1,24 @@
 @prefix sb: <https://example.org/vad/stormbpmn#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
 
 sb:ontology {
-  sb:Task a rdfs:Class .
-  sb:Event a rdfs:Class .
-  sb:DataObject a rdfs:Class .
-  sb:Lane a rdfs:Class .
-  sb:sequenceFlow a rdf:Property .
-  sb:association a rdf:Property .
-  sb:hasInput a rdf:Property .
-  sb:hasOutput a rdf:Property .
-  sb:assignedLane a rdf:Property .
+  sb:Task a rdfs:Class ; rdfs:comment "BPMN task used as a capability or work unit."@en .
+  sb:Event a rdfs:Class ; rdfs:comment "BPMN event."@en .
+  sb:DataObject a rdfs:Class ; rdfs:comment "Input or output data object."@en .
+  sb:Lane a rdfs:Class ; rdfs:comment "Responsibility lane or participant."@en .
+  sb:TextAnnotation a rdfs:Class ; rdfs:comment "BPMN text annotation."@en .
+
+  sb:sequenceFlow a rdf:Property ; rdfs:comment "Control flow between BPMN events and tasks."@en .
+  sb:dataInputAssociation a rdf:Property ; rdfs:domain sb:DataObject ; rdfs:range sb:Task ; rdfs:comment "Data object consumed by a task."@en .
+  sb:dataOutputAssociation a rdf:Property ; rdfs:domain sb:Task ; rdfs:range sb:DataObject ; rdfs:comment "Data object produced by a task."@en .
+  sb:assignedLane a rdf:Property ; rdfs:domain sb:Task ; rdfs:range sb:Lane ; rdfs:comment "Task assigned to a lane."@en .
+  sb:association a rdf:Property ; rdfs:range sb:TextAnnotation ; rdfs:comment "Association with a text annotation."@en .
+
+  sb:TaskShape a sh:NodeShape ; sh:targetClass sb:Task ;
+    sh:property [ sh:path sb:sequenceFlow ; sh:or ( [ sh:class sb:Task ] [ sh:class sb:Event ] ) ] ;
+    sh:property [ sh:path sb:dataOutputAssociation ; sh:class sb:DataObject ] ;
+    sh:property [ sh:path sb:assignedLane ; sh:class sb:Lane ] ;
+    sh:property [ sh:path sb:association ; sh:class sb:TextAnnotation ] .
 }
