@@ -1,0 +1,30 @@
+// Легенда нотации ARIS VAD.
+// Источник: https://docs.aris.com/10.0.27.0/yay-method-reference/en/#/home/494393/en/1
+digraph ArisVadLegend {
+  rankdir=LR;
+  nodesep=0.6;
+  ranksep=0.6;
+  graph [fontname="Arial", labelloc="t", fontsize=16, label="ARIS VAD: легенда"];
+  node [fontname="Arial", fontsize=11];
+  edge [fontname="Arial", fontsize=10];
+
+  fn  [shape="cds", style="filled", color="#0D47A1", fillcolor="#90CAF9", label="Function"];
+  ev  [shape="point", width=0.1, label="", xlabel="Event (тех. маркер)"];
+  io  [shape="note", style="filled", color="#9E9E9E", fillcolor="#FAFAFA", label="Information\nobject"];
+  ro  [shape="ellipse", style="filled", color="#B8860B", fillcolor="#FFF9C4", label="Org unit / Role"];
+  ap  [shape="box3d", style="filled", color="#0D47A1", fillcolor="#BBDEFB", label="Application\nsystem"];
+  cm  [shape="note", style="filled", color="#FBC02D", fillcolor="#FFFDE7", label="Comment"];
+
+  fn -> fn_next [arrowhead=vee, label="precedes"];
+  fn_next [shape="cds", style="filled", color="#0D47A1", fillcolor="#90CAF9", label="Function"];
+
+  io -> fn [style="dashed", arrowhead=vee, label="isInputFor"];
+  fn -> io_out [style="dashed", arrowhead=vee, label="creates"];
+  io_out [shape="note", style="filled", color="#9E9E9E", fillcolor="#FAFAFA", label="Output\nobject"];
+
+  ro -> fn [style="dashed", arrowhead=none, label="performs"];
+  ap -> fn [style="dotted", arrowhead=none, label="supports"];
+  fn -> cm [style="dotted", arrowhead=none, label="hasComment"];
+
+  { rank=same; fn; fn_next; }
+}

@@ -1,0 +1,30 @@
+@prefix vad: <https://example.org/vad/aris#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+# ARIS VAD - онтология верхнеуровневой цепочки создания ценности.
+# Источник: https://docs.aris.com/10.0.27.0/yay-method-reference/en/#/home/494393/en/1
+# В ver3VAD визуально отображается как горизонтальная линия Function
+# с параллельным рядом Role/OrgUnit; артефакты подключаются сверху.
+
+vad:ontology {
+  vad:Function a rdfs:Class ; rdfs:label "ARIS VAD Function"@en ; rdfs:comment "Value-adding function or high-level work unit."@en .
+  vad:Event a rdfs:Class ; rdfs:label "Technical event placeholder"@en ; rdfs:comment "Event is retained for table compatibility and rendered as a technical point."@en .
+  vad:InformationObject a rdfs:Class ; rdfs:label "Information object"@en ; rdfs:comment "Document, data object, input, or output."@en .
+  vad:Role a rdfs:Class ; rdfs:label "Organizational unit or role"@en .
+  vad:ApplicationSystem a rdfs:Class ; rdfs:label "Application system"@en .
+  vad:Comment a rdfs:Class ; rdfs:label "Comment"@en .
+
+  vad:precedes a rdf:Property ; rdfs:domain vad:Function ; rdfs:range vad:Function ; rdfs:comment "Workflow order between functions."@en .
+  vad:isInputFor a rdf:Property ; rdfs:domain vad:InformationObject ; rdfs:range vad:Function ; rdfs:comment "Information object consumed by a function."@en .
+  vad:creates a rdf:Property ; rdfs:domain vad:Function ; rdfs:range vad:InformationObject ; rdfs:comment "Information object produced by a function."@en .
+  vad:performs a rdf:Property ; rdfs:domain vad:Role ; rdfs:range vad:Function ; rdfs:comment "Role or organization performs a function."@en .
+  vad:supports a rdf:Property ; rdfs:domain vad:ApplicationSystem ; rdfs:range vad:Function ; rdfs:comment "Application system supports a function."@en .
+  vad:hasComment a rdf:Property ; rdfs:range vad:Comment ; rdfs:comment "Allowed comment relation for every ARIS VAD object."@en .
+
+  vad:FunctionShape a sh:NodeShape ; sh:targetClass vad:Function ;
+    sh:property [ sh:path vad:precedes ; sh:class vad:Function ] ;
+    sh:property [ sh:path vad:creates ; sh:class vad:InformationObject ] ;
+    sh:property [ sh:path vad:hasComment ; sh:class vad:Comment ] .
+}

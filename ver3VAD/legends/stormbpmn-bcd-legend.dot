@@ -1,0 +1,27 @@
+// Легенда нотации Stormbpmn BCD (через BPMN-палитру).
+// Источник: https://helpdesk.stormbpmn.com/
+digraph StormBpmnLegend {
+  rankdir=LR;
+  nodesep=0.6;
+  ranksep=0.6;
+  graph [fontname="Arial", labelloc="t", fontsize=16, label="Stormbpmn BCD: легенда (на BPMN-палитре)"];
+  node [fontname="Arial", fontsize=11];
+  edge [fontname="Arial", fontsize=10];
+
+  ev  [shape="circle", style="filled", color="#424242", fillcolor="#FFFFFF", label="Event"];
+  ts  [shape="box", style="rounded,filled", color="#0D47A1", fillcolor="#E3F2FD", label="Task"];
+  dt  [shape="note", style="filled", color="#9E9E9E", fillcolor="#FAFAFA", label="Data object"];
+  ln  [shape="box", style="rounded,filled,dashed", color="#B8860B", fillcolor="#FFFDE7", label="Lane /\nparticipant"];
+  an  [shape="note", style="filled", color="#FBC02D", fillcolor="#FFFDE7", label="Text\nannotation"];
+
+  ev -> ts [arrowhead=vee, label="sequence flow"];
+  ts -> ts_next [arrowhead=vee, label="sequence flow"];
+  ts_next [shape="box", style="rounded,filled", color="#0D47A1", fillcolor="#E3F2FD", label="Task"];
+
+  dt -> ts [style="dotted", label="data input"];
+  ts -> dt_out [style="dotted", label="data output"];
+  dt_out [shape="note", style="filled", color="#9E9E9E", fillcolor="#FAFAFA", label="Data object"];
+
+  ln -> ts [style="dashed", arrowhead=none, label="lane"];
+  ts -> an [arrowhead=none, style="dotted", label="association"];
+}

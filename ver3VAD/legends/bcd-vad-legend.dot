@@ -1,0 +1,23 @@
+// Легенда обобщённой BCD нотации.
+digraph BcdLegend {
+  rankdir=LR;
+  nodesep=0.6;
+  ranksep=0.6;
+  graph [fontname="Arial", labelloc="t", fontsize=16, label="BCD (обобщённая): легенда"];
+  node [fontname="Arial", fontsize=11];
+  edge [fontname="Arial", fontsize=10];
+
+  cap [shape="rect", style="rounded,filled", color="#0D47A1", fillcolor="#D7ECFF", label="Business\ncapability"];
+  res [shape="folder", style="filled", color="#90A4AE", fillcolor="#ECEFF1", label="Resource"];
+  prd [shape="folder", style="filled", color="#90A4AE", fillcolor="#ECEFF1", label="Product"];
+  own [shape="ellipse", style="filled", color="#B8860B", fillcolor="#FFF8E1", label="Owner"];
+  cm  [shape="note", style="filled", color="#FBC02D", fillcolor="#FFFDE7", label="Comment"];
+
+  cap -> cap_dep [arrowhead=vee, label="dependsOn", color="#1A237E"];
+  cap_dep [shape="rect", style="rounded,filled", color="#0D47A1", fillcolor="#D7ECFF", label="Business\ncapability"];
+
+  res -> cap [style="dashed", arrowhead=vee, label="consumes"];
+  cap -> prd [style="dashed", arrowhead=vee, label="produces"];
+  cap -> own [style="dashed", arrowhead=none, label="owns"];
+  cap -> cm [style="dotted", arrowhead=none, label="hasComment"];
+}

@@ -1,0 +1,29 @@
+// Легенда нотации SILA Union VAD.
+// Источник: https://bpm3.ru/articles/modelirovanie-protsessov-v-notatsii-vad-v-sila-union/
+digraph SilaVadLegend {
+  rankdir=LR;
+  nodesep=0.6;
+  ranksep=0.6;
+  graph [fontname="Arial", labelloc="t", fontsize=16, label="SILA Union VAD: легенда"];
+  node [fontname="Arial", fontsize=11];
+  edge [fontname="Arial", fontsize=10];
+
+  op  [shape="component", style="filled", color="#2E7D32", fillcolor="#E8F5E9", label="Operation"];
+  doc [shape="note", style="filled", color="#9E9E9E", fillcolor="#F5F5F5", label="Document"];
+  ro  [shape="ellipse", style="filled", color="#B8860B", fillcolor="#FFF9C4", label="Role"];
+  is  [shape="box3d", style="filled", color="#0D47A1", fillcolor="#BBDEFB", label="Information\nsystem"];
+  cm  [shape="note", style="filled", color="#FBC02D", fillcolor="#FFFDE7", label="Comment"];
+
+  op -> op_next [color="#2E7D32", arrowhead=vee, label="precedes"];
+  op_next [shape="component", style="filled", color="#2E7D32", fillcolor="#E8F5E9", label="Operation"];
+
+  doc -> op [style="dashed", arrowhead=vee, label="isUsedBy"];
+  op -> doc_out [style="dashed", arrowhead=vee, label="producesDocument"];
+  doc_out [shape="note", style="filled", color="#9E9E9E", fillcolor="#F5F5F5", label="Document"];
+
+  ro -> op [style="dashed", arrowhead=none, label="performs"];
+  is -> op [style="dotted", arrowhead=none, label="supports"];
+  op -> cm [style="dotted", arrowhead=none, label="hasComment"];
+
+  { rank=same; op; op_next; }
+}

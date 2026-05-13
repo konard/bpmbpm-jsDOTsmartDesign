@@ -1,0 +1,22 @@
+// Легенда нотации OSP BCD.
+// Источник: статья "Открытых систем" - https://www.osp.ru/os/2026/02/13060742
+digraph OspBcdLegend {
+  rankdir=LR;
+  nodesep=0.6;
+  ranksep=0.6;
+  graph [fontname="Arial", labelloc="t", fontsize=16, label="OSP BCD: легенда (только 3 элемента)"];
+  node [fontname="Arial", fontsize=11];
+  edge [fontname="Arial", fontsize=10];
+
+  cap [shape="rect", style="filled", color="#0D47A1", fillcolor="#BBDEFB", label="Capability"];
+  grp [shape="box", style="rounded,filled,dashed", color="#1A237E", fillcolor="#E8EAF6", label="Capability\ngroup"];
+  res [shape="folder", style="filled", color="#90A4AE", fillcolor="#ECEFF1", label="Resource /\nProduct"];
+
+  res -> cap [style="dashed", arrowhead=vee, label="consumes"];
+  cap -> res_out [style="dashed", arrowhead=vee, label="produces"];
+  res_out [shape="folder", style="filled", color="#90A4AE", fillcolor="#ECEFF1", label="Resource\n(=product)"];
+  cap -> grp [arrowhead=none, style="solid", label="isPartOf"];
+
+  // Явно НЕ показываем hasNext - это формальный признак, что OSP BCD
+  // не моделирует поток времени.
+}

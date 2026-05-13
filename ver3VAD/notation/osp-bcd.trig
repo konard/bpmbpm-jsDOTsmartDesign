@@ -1,0 +1,30 @@
+@prefix osp: <https://example.org/vad/osp-bcd#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+# OSP BCD - локальная онтология для статьи "Открытых систем"
+# (osp.ru/os/2026/02/13060742). Палитра жёстко ограничена тремя
+# элементами: Capability, CapabilityGroup и Resource. Поток времени
+# не моделируется - между способностями нет последовательности.
+
+osp:ontology {
+  osp:Capability a rdfs:Class ; rdfs:label "Business capability"@en ;
+    rdfs:comment "Stable capability of the enterprise."@en .
+  osp:CapabilityGroup a rdfs:Class ; rdfs:label "Group of capabilities"@en ;
+    rdfs:comment "Aggregator of capabilities by domain."@en .
+  osp:Resource a rdfs:Class ; rdfs:label "Resource / product"@en ;
+    rdfs:comment "Resource consumed or product produced; single class on purpose."@en .
+
+  osp:consumes a rdf:Property ; rdfs:domain osp:Capability ; rdfs:range osp:Resource ;
+    rdfs:comment "Capability consumes a resource."@en .
+  osp:produces a rdf:Property ; rdfs:domain osp:Capability ; rdfs:range osp:Resource ;
+    rdfs:comment "Capability produces a product."@en .
+  osp:isPartOf a rdf:Property ; rdfs:domain osp:Capability ; rdfs:range osp:CapabilityGroup ;
+    rdfs:comment "Capability is grouped under a domain group."@en .
+
+  osp:CapabilityShape a sh:NodeShape ; sh:targetClass osp:Capability ;
+    sh:property [ sh:path osp:consumes ; sh:class osp:Resource ] ;
+    sh:property [ sh:path osp:produces ; sh:class osp:Resource ] ;
+    sh:property [ sh:path osp:isPartOf ; sh:class osp:CapabilityGroup ] .
+}

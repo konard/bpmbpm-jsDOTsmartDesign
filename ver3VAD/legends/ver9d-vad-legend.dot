@@ -1,0 +1,21 @@
+// Легенда нотации rdf-grapher ver9d (опорная VAD).
+// Источник: https://github.com/bpmbpm/rdf-grapher/tree/main/ver9d
+digraph Ver9dLegend {
+  rankdir=LR;
+  nodesep=0.6;
+  ranksep=0.8;
+  graph [fontname="Arial", labelloc="t", fontsize=16, label="ver9d VAD: легенда"];
+  node [fontname="Arial", fontsize=11];
+  edge [fontname="Arial", fontsize=10];
+
+  // Объекты
+  tp [shape="cds", height=0.8, width=1.5, style="filled", color="#0D47A1", fillcolor="#64B5F6", label="TypeProcess"];
+  eg [shape="ellipse", style="filled", color="#B8860B", fillcolor="#FFFFCC", label="ExecutorGroup"];
+
+  // Предикаты
+  tp -> tp_next [color="#2E7D32", arrowhead=vee, label="hasNext"];
+  tp_next [shape="cds", height=0.8, width=1.5, style="filled", color="#0D47A1", fillcolor="#64B5F6", label="TypeProcess (next)"];
+  tp -> eg [color="#1565C0", style="dashed", arrowhead=none, label="hasExecutor"];
+
+  { rank=same; tp; tp_next; }
+}

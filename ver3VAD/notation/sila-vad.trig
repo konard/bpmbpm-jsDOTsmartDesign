@@ -1,0 +1,29 @@
+@prefix sila: <https://example.org/vad/sila#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+# SILA Union VAD - онтология платформы SILA Union.
+# Источник: https://bpm3.ru/articles/modelirovanie-protsessov-v-notatsii-vad-v-sila-union/
+# Близка к ARIS VAD, но операции обязательно сопровождаются
+# документом-входом и документом-выходом.
+
+sila:ontology {
+  sila:Operation a rdfs:Class ; rdfs:comment "High-level process step or operation."@en .
+  sila:Document a rdfs:Class ; rdfs:comment "Input or output document."@en .
+  sila:Role a rdfs:Class ; rdfs:comment "Performer role."@en .
+  sila:InformationSystem a rdfs:Class ; rdfs:comment "Supporting information system."@en .
+  sila:Comment a rdfs:Class ; rdfs:comment "Annotation for an element or relation."@en .
+
+  sila:precedes a rdf:Property ; rdfs:domain sila:Operation ; rdfs:range sila:Operation ; rdfs:comment "Operation order."@en .
+  sila:isUsedBy a rdf:Property ; rdfs:domain sila:Document ; rdfs:range sila:Operation ; rdfs:comment "Document is used by an operation."@en .
+  sila:producesDocument a rdf:Property ; rdfs:domain sila:Operation ; rdfs:range sila:Document ; rdfs:comment "Operation produces a document."@en .
+  sila:performs a rdf:Property ; rdfs:domain sila:Role ; rdfs:range sila:Operation ; rdfs:comment "Role performs an operation."@en .
+  sila:supports a rdf:Property ; rdfs:domain sila:InformationSystem ; rdfs:range sila:Operation ; rdfs:comment "System supports an operation."@en .
+  sila:hasComment a rdf:Property ; rdfs:range sila:Comment ; rdfs:comment "Relation to a comment."@en .
+
+  sila:OperationShape a sh:NodeShape ; sh:targetClass sila:Operation ;
+    sh:property [ sh:path sila:precedes ; sh:class sila:Operation ] ;
+    sh:property [ sh:path sila:producesDocument ; sh:class sila:Document ] ;
+    sh:property [ sh:path sila:hasComment ; sh:class sila:Comment ] .
+}
