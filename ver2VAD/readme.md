@@ -1,4 +1,4 @@
-## VAD-26
+## VAD-26v2
 На основе: https://github.com/bpmbpm/jsDOTsmartDesign/issues/1
 
 
