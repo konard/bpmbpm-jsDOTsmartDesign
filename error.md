@@ -29,12 +29,7 @@
 Шаг 1: Создание папки и скачивание файлов  
 Для работы с локальными версиями вам понадобятся файлы двух библиотек. Вот откуда их можно безопасно загрузить:
 
-Папка lib: Создайте её внутри папки с вашим проектом (jsDOTsmartDesign), рядом с файлом jsDOTsmartDesign.html. 
-
-jSuites (v4.16.1): Перейдите на страницу библиотеки на CDNJS и скачайте два файла этой версии: jsuites.css и jsuites.js.
-
-Кликните правой кнопкой мыши по ссылке jsuites.css и выберите «Сохранить ссылку как...», сохранив файл в папку lib.
-То же самое сделайте для jsuites.js и тоже сохраните в lib.  
+для jsuites.js и тоже сохраните в lib.  
 Jspreadsheet CE (v4.11.0): Хотя jsuites.net/v5/jsuites.js недоступен, Библиотека Jspreadsheet CE v4 всё ещё доступна и работает. Скачать нужные файлы и версию можно со страницы проекта на npm. Вам понадобятся jspreadsheet.css и index.min.js (или jspreadsheet.min.js).
 
 Откройте ссылку на файл: https://cdn.jsdelivr.net/npm/jspreadsheet-ce@4.11.0/dist/jspreadsheet.min.css.  
