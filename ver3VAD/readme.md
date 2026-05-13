@@ -1,4 +1,4 @@
-Исправления ver2VAD от Claude Opus 4.7
+Исправления ver2VAD (Tool: OpenAI Codex \ Model: GPT-5.5) от Claude Code / Claude Opus 4.7
 
 ## VAD-26v3
 На основе: https://github.com/bpmbpm/jsDOTsmartDesign/issues/1
