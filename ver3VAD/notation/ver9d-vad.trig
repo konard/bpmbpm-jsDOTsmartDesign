@@ -1,0 +1,27 @@
+@prefix v9: <https://example.org/vad/ver9d#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+# rdf-grapher ver9d basic VAD ontology.
+# Источник: https://github.com/bpmbpm/rdf-grapher/blob/main/ver9d/ontology/vad-basic-ontology.trig
+# Минимальная семантика: процессы упорядочены через hasNext, каждый
+# процесс имеет ровно одну группу исполнителей через hasExecutor.
+# Это "образцовая" нотация из issue: горизонтальный поток cds-фигур
+# с параллельным рядом эллипсов ExecutorGroup.
+
+v9:ontology {
+  v9:TypeProcess a rdfs:Class ; rdfs:label "Type process"@en ;
+    rdfs:comment "High-level process node; rendered as cds-arrow."@en .
+  v9:ExecutorGroup a rdfs:Class ; rdfs:label "Executor group"@en ;
+    rdfs:comment "Group of executors responsible for a process; rendered as ellipse."@en .
+
+  v9:hasNext a rdf:Property ; rdfs:domain v9:TypeProcess ; rdfs:range v9:TypeProcess ;
+    rdfs:comment "Ordered linkage of processes left-to-right."@en .
+  v9:hasExecutor a rdf:Property ; rdfs:domain v9:TypeProcess ; rdfs:range v9:ExecutorGroup ;
+    rdfs:comment "Process is performed by an executor group."@en .
+
+  v9:TypeProcessShape a sh:NodeShape ; sh:targetClass v9:TypeProcess ;
+    sh:property [ sh:path v9:hasNext ; sh:class v9:TypeProcess ] ;
+    sh:property [ sh:path v9:hasExecutor ; sh:class v9:ExecutorGroup ] .
+}

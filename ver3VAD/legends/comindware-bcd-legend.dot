@@ -1,0 +1,17 @@
+// Легенда нотации Comindware BCD.
+// Источник: https://kb.comindware.ru/
+digraph ComindwareBcdLegend {
+  rankdir=LR;
+  nodesep=0.7;
+  ranksep=0.6;
+  graph [fontname="Arial", labelloc="t", fontsize=16, label="Comindware BCD: легенда (иерархия способностей)"];
+  node [fontname="Arial", fontsize=11];
+  edge [fontname="Arial", fontsize=10];
+
+  l1 [shape="box", style="rounded,filled", color="#1A237E", fillcolor="#C5CAE9", label="Capability L1\nОтветственный: ...\nПрим.: ..."];
+  l2 [shape="box", style="rounded,filled", color="#283593", fillcolor="#9FA8DA", label="Capability L2"];
+  l3 [shape="box", style="rounded,filled", color="#3949AB", fillcolor="#7986CB", label="Capability L3"];
+
+  l1 -> l2 [arrowhead=normal, label="decomposition", color="#1A237E"];
+  l2 -> l3 [arrowhead=normal, label="decomposition", color="#1A237E"];
+}

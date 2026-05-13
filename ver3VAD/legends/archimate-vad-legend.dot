@@ -1,0 +1,29 @@
+// Легенда VAD-подобного профиля ArchiMate.
+// Источник: https://pubs.opengroup.org/architecture/archimate3-doc/
+digraph ArchiMateLegend {
+  rankdir=LR;
+  nodesep=0.7;
+  ranksep=0.6;
+  graph [fontname="Arial", labelloc="t", fontsize=16, label="ArchiMate VAD-like: легенда"];
+  node [fontname="Arial", fontsize=11];
+  edge [fontname="Arial", fontsize=10];
+
+  be  [shape="hexagon", style="filled", color="#AD1457", fillcolor="#FCE4EC", label="Business\nevent"];
+  bp  [shape="box", style="rounded,filled", color="#33691E", fillcolor="#DCEDC8", label="Business\nprocess"];
+  br  [shape="box", style="filled", color="#B8860B", fillcolor="#FFF9C4", label="Business\nrole"];
+  bo  [shape="note", style="filled", color="#9E9E9E", fillcolor="#F5F5F5", label="Business\nobject"];
+  ac  [shape="box3d", style="filled", color="#0277BD", fillcolor="#B3E5FC", label="Application\ncomponent"];
+  mn  [shape="note", style="filled", color="#FBC02D", fillcolor="#FFFDE7", label="Meaning"];
+
+  be -> bp [arrowhead=vee, label="triggering"];
+  bp -> bp_next [arrowhead=vee, label="triggering"];
+  bp_next [shape="box", style="rounded,filled", color="#33691E", fillcolor="#DCEDC8", label="Business\nprocess"];
+
+  bo -> bp [arrowhead=vee, label="access (in)"];
+  bp -> bo_out [arrowhead=vee, label="access (out)"];
+  bo_out [shape="note", style="filled", color="#9E9E9E", fillcolor="#F5F5F5", label="Business\nobject"];
+
+  br -> bp [style="dashed", arrowhead=none, label="assignment"];
+  ac -> bp [style="dashed", arrowhead=normal, label="serving"];
+  bp -> mn [style="dotted", arrowhead=none, label="association"];
+}

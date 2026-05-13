@@ -1,0 +1,28 @@
+@prefix cw: <https://example.org/vad/comindware-bcd#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+# Comindware Platform BCD.
+# Источник: https://kb.comindware.ru/ (раздел "Моделирование. Бизнес-способности").
+# Особенности: иерархия способностей без ресурсных потоков, ответственный
+# и комментарий вынесены внутрь блока способности.
+
+cw:ontology {
+  cw:Capability a rdfs:Class ; rdfs:label "Business capability"@en ;
+    rdfs:comment "Capability node in Comindware platform."@en .
+  cw:CapabilityLevel a rdfs:Class ; rdfs:label "Capability level (L1/L2/L3)"@en .
+  cw:Owner a rdfs:Class ; rdfs:label "Owner (attribute)"@en ;
+    rdfs:comment "Owner is an attribute of capability, not an independent node."@en .
+
+  cw:decomposesInto a rdf:Property ; rdfs:domain cw:Capability ; rdfs:range cw:Capability ;
+    rdfs:comment "Parent-child decomposition between levels."@en .
+  cw:atLevel a rdf:Property ; rdfs:domain cw:Capability ; rdfs:range cw:CapabilityLevel ;
+    rdfs:comment "Level marker (L1/L2/L3)."@en .
+  cw:hasOwnerLabel a rdf:Property ; rdfs:domain cw:Capability ;
+    rdfs:comment "Owner rendered inline as a label."@en .
+
+  cw:CapabilityShape a sh:NodeShape ; sh:targetClass cw:Capability ;
+    sh:property [ sh:path cw:decomposesInto ; sh:class cw:Capability ] ;
+    sh:property [ sh:path cw:atLevel ; sh:class cw:CapabilityLevel ] .
+}

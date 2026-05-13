@@ -1,0 +1,39 @@
+@prefix bs: <https://example.org/vad/businessstudio#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+# Business Studio VAD - онтология верхнеуровневой модели Business Studio.
+# Источник: документация Business Studio (businessstudio.ru), раздел
+# "Создание модели верхнего уровня (Value Added Chain)".
+# Особенность: функция VAD строго связана с орг.единицей-ответственным
+# через свойство "Ответственный", а композиция с группой функций -
+# через предикат composesInto.
+
+bs:ontology {
+  bs:VadFunction a rdfs:Class ; rdfs:label "VAD function"@en ;
+    rdfs:comment "High-level value-adding function (cds shape in DOT)."@en .
+  bs:VadFunctionGroup a rdfs:Class ; rdfs:label "VAD function group"@en ;
+    rdfs:comment "Group/composition of VAD functions."@en .
+  bs:Term a rdfs:Class ; rdfs:label "Term / Document"@en ;
+    rdfs:comment "Reference object (term, document) used or produced by a function."@en .
+  bs:OrgUnit a rdfs:Class ; rdfs:label "Organizational unit"@en ;
+    rdfs:comment "Responsible organizational unit."@en .
+  bs:InformationSystem a rdfs:Class ; rdfs:label "Information system"@en .
+  bs:Comment a rdfs:Class ; rdfs:label "Comment"@en .
+
+  bs:precedes a rdf:Property ; rdfs:domain bs:VadFunction ; rdfs:range bs:VadFunction ;
+    rdfs:comment "Workflow precedence between functions."@en .
+  bs:composesInto a rdf:Property ; rdfs:domain bs:VadFunction ; rdfs:range bs:VadFunctionGroup ;
+    rdfs:comment "Composition of a function into a group."@en .
+  bs:isInputFor a rdf:Property ; rdfs:domain bs:Term ; rdfs:range bs:VadFunction .
+  bs:produces a rdf:Property ; rdfs:domain bs:VadFunction ; rdfs:range bs:Term .
+  bs:responsibleFor a rdf:Property ; rdfs:domain bs:OrgUnit ; rdfs:range bs:VadFunction .
+  bs:supports a rdf:Property ; rdfs:domain bs:InformationSystem ; rdfs:range bs:VadFunction .
+  bs:hasComment a rdf:Property ; rdfs:range bs:Comment .
+
+  bs:VadFunctionShape a sh:NodeShape ; sh:targetClass bs:VadFunction ;
+    sh:property [ sh:path bs:precedes ; sh:class bs:VadFunction ] ;
+    sh:property [ sh:path bs:produces ; sh:class bs:Term ] ;
+    sh:property [ sh:path bs:hasComment ; sh:class bs:Comment ] .
+}

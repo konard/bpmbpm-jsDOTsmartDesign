@@ -1,0 +1,29 @@
+// Легенда нотации Business Studio VAD.
+// Источник: https://www.businessstudio.ru/
+digraph BusinessStudioVadLegend {
+  rankdir=LR;
+  nodesep=0.7;
+  ranksep=0.5;
+  graph [fontname="Arial", labelloc="t", fontsize=16, label="Business Studio VAD: легенда"];
+  node [fontname="Arial", fontsize=11];
+  edge [fontname="Arial", fontsize=10];
+
+  vf  [shape="cds", style="filled", color="#00695C", fillcolor="#B2DFDB", label="VAD function"];
+  vg  [shape="box", peripheries=2, style="filled", color="#00695C", fillcolor="#80CBC4", label="VAD function\ngroup"];
+  tr  [shape="note", style="filled", color="#9E9E9E", fillcolor="#FAFAFA", label="Term /\nDocument"];
+  ou  [shape="ellipse", style="filled", color="#4E342E", fillcolor="#D7CCC8", label="Org unit"];
+  is  [shape="box3d", style="filled", color="#1B5E20", fillcolor="#C8E6C9", label="Information\nsystem"];
+
+  vf -> vf_next [color="#00695C", arrowhead=vee, label="предшествование"];
+  vf_next [shape="cds", style="filled", color="#00695C", fillcolor="#B2DFDB", label="VAD function"];
+
+  vf -> vg [arrowhead=diamond, label="композиция"];
+  tr -> vf [style="dashed", arrowhead=vee, label="вход"];
+  vf -> tr_out [style="dashed", arrowhead=vee, label="выход"];
+  tr_out [shape="note", style="filled", color="#9E9E9E", fillcolor="#FAFAFA", label="Term (out)"];
+
+  ou -> vf [arrowhead=none, style="dashed", label="ответственный"];
+  vf -> is [arrowhead=none, style="dotted", label="ИС"];
+
+  { rank=same; vf; vf_next; }
+}
