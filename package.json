@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "test": "node --test tests/vad-dot.test.mjs"
+    "test": "node --test tests/vad-dot.test.mjs tests/vad-dot-ver3.test.mjs"
   },
   "devDependencies": {}
 }
