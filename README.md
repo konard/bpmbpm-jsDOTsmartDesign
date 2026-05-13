@@ -6,6 +6,8 @@ jsDOT SmartDesign (jexcel - DOT) демонстрирует как можно и
 jsDOT SmartDesign – урезанная версия exDOT SmartDesign. 
 Схемы процессов строятся в процессных нотациях EPC и VAD. В простейшем случае – достаточно нажать кнопку «Схема» и отобразится тестовый простой пример, далее можно редактировать таблицу связей и получить новую схему, соответствующую описанию процесса в табличном виде.
 
+**run jsDOTsmartDesignVAD.html** https://bpmbpm.github.io/jsDOTsmartDesign/jsDOTsmartDesign.html
+
 Статьи:
 - ВРМ. Смарт-инструменты «Таблица -> Схема» для формализации бизнес-процессов. Рестайлинг ARIS SmartDesign
 https://habr.com/ru/articles/810851/
