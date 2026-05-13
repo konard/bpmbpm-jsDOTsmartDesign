@@ -11,5 +11,5 @@
   - https://github.com/bpmbpm/jsDOTsmartDesign/blob/main/ver3VAD/notation/analysis3.md Зачем существует много VAD-подобных нотаций
 
 
-из https://github.com/bpmbpm/rdf-grapher/blob/main/ver9d/
+см. также https://github.com/bpmbpm/rdf-grapher/blob/main/ver9d/
 
